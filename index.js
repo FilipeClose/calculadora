@@ -24,7 +24,7 @@ document.getElementById("dividir").addEventListener("click", () => {
 })
 document.getElementById("raiz").addEventListener("click", () => {
 	var num1 = document.getElementById("ent1").value;
-	var total = +num1 *0.5;
-	alert(`O resultado da divisao é: `+ total);
+	var total = Math.pow(+num1, 0.5);
+	alert(`A raiz quadrada de `+ +num1 + ` é: `+ total);
 })
 
