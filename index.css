@@ -1,0 +1,10 @@
+.div-princ {
+}
+.div-princ button {
+    width: 30%;
+    height: 11vh;
+    font-size: 1.0rem;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+}
