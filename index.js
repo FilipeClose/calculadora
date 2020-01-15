@@ -27,4 +27,10 @@ document.getElementById("raiz").addEventListener("click", () => {
 	var total = Math.pow(+num1, 0.5);
 	alert(`A raiz quadrada de `+ +num1 + ` é: `+ total);
 })
+document.getElementById("porcentagem").addEventListener("click", () => {
+	var num1 = document.getElementById("ent1").value;
+	var num2 = document.getElementById("ent2").value;
+	var total = (+num1 * +num2) / 100;
+	alert(num1 +`% de `+ num2 + ` é: `+ total);
+})
 

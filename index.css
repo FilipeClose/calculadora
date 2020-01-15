@@ -1,10 +1,18 @@
 .div-princ {
+ 	background-color: #FFF;
+ 	display: inline; 
 }
 .div-princ button {
-    width: 30%;
-    height: 11vh;
+    width: 10%;
+    height: 10vh;
     font-size: 1.0rem;
     padding: 10px;
     border-radius: 7px;
     cursor: pointer;
+    border-bottom: double;
+    border-bottom-width: 5px;
+    padding-bottom: 5px;
+}
+.div-princ h1, h4 {
+	color: gray;
 }
