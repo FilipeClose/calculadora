@@ -129,6 +129,16 @@ function textoDoDeck(deck, media) {
 	return `Deck (${media.toFixed(1)} elixir): ` + deck.map(c => c.nome).join(", ");
 }
 
+async function copiar(btn, texto, rotulo) {
+	try {
+		await navigator.clipboard.writeText(texto);
+		btn.textContent = "Copiado!";
+	} catch {
+		btn.textContent = "Não foi possível copiar";
+	}
+	setTimeout(() => (btn.textContent = rotulo), 1500);
+}
+
 function renderResultado(res) {
 	const area = document.getElementById("resultado");
 	area.innerHTML = "";
@@ -147,7 +157,11 @@ function renderResultado(res) {
 					<span class="stat">Ciclo de 4 <b>${avaliacao.ciclo}</b></span>
 					<span class="stat">Nota <b>${avaliacao.nota}</b>/100</span>
 				</div>
-				<button class="copiar">Copiar lista</button>
+				<div class="acoes">
+					<a class="abrir primario" target="_blank" rel="noopener">Abrir no Clash Royale</a>
+					<button class="copiar-link">Copiar link</button>
+					<button class="copiar">Copiar lista</button>
+				</div>
 			</div>
 			<div class="cartas"></div>
 			<div class="deck-info">
@@ -168,16 +182,22 @@ function renderResultado(res) {
 			grade.appendChild(el);
 		}
 
+		const link = linkDoDeck(deck);
+		const abrir = box.querySelector(".abrir");
+		const btnLink = box.querySelector(".copiar-link");
+		if (link.url) {
+			abrir.href = link.url;
+			btnLink.addEventListener("click", () => copiar(btnLink, link.url, "Copiar link"));
+		} else {
+			const nomes = link.faltando.map(c => c.nome).join(", ");
+			abrir.remove();
+			btnLink.disabled = true;
+			btnLink.title = `Sem código oficial para: ${nomes}`;
+			btnLink.textContent = "Link indisponível";
+		}
+
 		const btn = box.querySelector(".copiar");
-		btn.addEventListener("click", async () => {
-			try {
-				await navigator.clipboard.writeText(textoDoDeck(deck, avaliacao.media));
-				btn.textContent = "Copiado!";
-			} catch {
-				btn.textContent = "Não foi possível copiar";
-			}
-			setTimeout(() => (btn.textContent = "Copiar lista"), 1500);
-		});
+		btn.addEventListener("click", () => copiar(btn, textoDoDeck(deck, avaliacao.media), "Copiar lista"));
 		area.appendChild(box);
 	});
 	area.scrollIntoView({ behavior: "smooth", block: "start" });

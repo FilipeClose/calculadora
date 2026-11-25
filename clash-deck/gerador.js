@@ -178,6 +178,15 @@ function funcaoNoDeck(carta) {
 	return "Suporte";
 }
 
+// Link oficial de "copiar deck": no celular com o jogo instalado, abre o Clash Royale
+// com a tela de copiar o deck, igual a um link compartilhado por um amigo.
+function linkDoDeck(deck) {
+	const faltando = deck.filter(c => !CODIGOS_OFICIAIS[c.id]);
+	if (faltando.length) return { faltando };
+	const codigos = deck.map(c => CODIGOS_OFICIAIS[c.id]).join(";");
+	return { url: `https://link.clashroyale.com/en/?clashroyale://copyDeck?deck=${codigos}&l=Royals&tt=159000000` };
+}
+
 // Ponto de entrada: gera até `quantidade` decks diferentes.
 function gerarDecks({ fixas = [], banidas = [], estilo = "qualquer", quantidade = 3 }) {
 	const cfg = ESTILOS[estilo] || ESTILOS.qualquer;
@@ -209,5 +218,5 @@ function gerarDecks({ fixas = [], banidas = [], estilo = "qualquer", quantidade 
 }
 
 if (typeof module !== "undefined") {
-	module.exports = { gerarDecks, funcaoNoDeck, ESTILOS };
+	module.exports = { gerarDecks, funcaoNoDeck, linkDoDeck, ESTILOS };
 }

@@ -157,7 +157,10 @@ button { font: inherit; cursor: pointer; }
 .deck-info li { padding: 2px 0; }
 .deck-info .ok::before { content: "✔ "; color: var(--ok); }
 .deck-info .nao::before { content: "✖ "; color: var(--erro); }
-.copiar { padding: 7px 12px; border-radius: 8px; border: 1px solid var(--borda); background: var(--fundo); color: var(--texto); }
+.acoes { display: flex; gap: 6px; flex-wrap: wrap; }
+.acoes .primario { padding: 7px 12px; font-size: .9rem; text-decoration: none; }
+.copiar-link:disabled { opacity: .5; cursor: help; }
+.copiar, .copiar-link { padding: 7px 12px; border-radius: 8px; border: 1px solid var(--borda); background: var(--fundo); color: var(--texto); }
 .erro { color: var(--erro); background: var(--painel); padding: 14px; border-radius: 10px; }
 
 @media (max-width: 640px) {

@@ -219,6 +219,37 @@ const SINERGIAS = [
 	["little_prince", "giant", 1],
 ];
 
+// Códigos oficiais das cartas (usados no link "copiar deck" do jogo).
+// Fonte: base pública RoyaleAPI/cr-api-data. Cartas sem código aqui não geram link.
+const CODIGOS_OFICIAIS = {
+	hog: 26000021, giant: 26000003, golem: 26000009, royal_giant: 26000024,
+	balloon: 26000006, lava_hound: 26000029, xbow: 27000008, mortar: 27000002,
+	miner: 26000032, goblin_barrel: 28000004, graveyard: 28000010, royal_hogs: 26000059,
+	ram_rider: 26000051, elixir_golem: 26000067, goblin_drill: 27000013, three_musk: 26000028,
+	electro_giant: 26000085, skeleton_barrel: 26000056, wall_breakers: 26000058, goblin_giant: 26000060,
+	battle_ram: 26000036, elite_barbs: 26000043, zap: 28000008, log: 28000011,
+	arrows: 28000001, snowball: 28000017, barb_barrel: 28000015, royal_delivery: 28000018,
+	tornado: 28000012, earthquake: 28000014, fireball: 28000000, poison: 28000009,
+	rocket: 28000003, lightning: 28000007, freeze: 28000005, rage: 28000002,
+	knight: 26000000, valkyrie: 26000011, musketeer: 26000014, wizard: 26000017,
+	ice_wizard: 26000023, electro_wizard: 26000042, baby_dragon: 26000015, inferno_dragon: 26000037,
+	electro_dragon: 26000063, skeleton_dragons: 26000080, minions: 26000005, minion_horde: 26000022,
+	mega_minion: 26000039, bats: 26000049, skeletons: 26000010, ice_spirit: 26000030,
+	fire_spirit: 26000031, electro_spirit: 26000084, heal_spirit: 28000016, goblins: 26000002,
+	spear_goblins: 26000019, goblin_gang: 26000041, skarmy: 26000012, guards: 26000025,
+	archers: 26000001, dart_goblin: 26000040, firecracker: 26000064, princess: 26000026,
+	magic_archer: 26000062, hunter: 26000044, flying_machine: 26000057, phoenix: 26000087,
+	mother_witch: 26000083, witch: 26000007, executioner: 26000045, night_witch: 26000048,
+	mini_pekka: 26000018, lumberjack: 26000035, pekka: 26000004, prince: 26000016,
+	dark_prince: 26000027, bandit: 26000046, royal_ghost: 26000050, fisherman: 26000061,
+	ice_golem: 26000038, battle_healer: 26000068, bowler: 26000034, bomber: 26000013,
+	barbarians: 26000008, mega_knight: 26000055, giant_skeleton: 26000020, sparky: 26000033,
+	royal_recruits: 26000047, golden_knight: 26000074, archer_queen: 26000072, skeleton_king: 26000069,
+	mighty_miner: 26000065, monk: 26000077, cannon: 27000000, tesla: 27000006,
+	inferno_tower: 27000003, bomb_tower: 27000004, goblin_cage: 27000012, tombstone: 27000009,
+	furnace: 27000010, goblin_hut: 27000001, elixir_collector: 27000007,
+};
+
 // Mapa id -> carta e mapa de sinergias para consulta rápida.
 const CARTAS_POR_ID = Object.fromEntries(CARTAS.map(c => [c.id, c]));
 const MAPA_SINERGIA = {};
@@ -233,5 +264,5 @@ function sinergia(a, b) {
 
 // Permite usar os mesmos dados no Node (para testes).
 if (typeof module !== "undefined") {
-	module.exports = { CARTAS, CARTAS_POR_ID, SINERGIAS, sinergia };
+	module.exports = { CARTAS, CARTAS_POR_ID, SINERGIAS, CODIGOS_OFICIAIS, sinergia };
 }
