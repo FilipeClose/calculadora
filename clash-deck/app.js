@@ -11,6 +11,15 @@ const estado = {
 	busca: "",
 };
 
+let timerAviso;
+function aviso(msg) {
+	const el = document.getElementById("aviso");
+	el.textContent = msg;
+	el.hidden = false;
+	clearTimeout(timerAviso);
+	timerAviso = setTimeout(() => (el.hidden = true), 3500);
+}
+
 function carregarExcluidas() {
 	try { return JSON.parse(localStorage.getItem("cr-excluidas") || "[]"); } catch { return []; }
 }
@@ -89,12 +98,12 @@ function clicarCarta(id) {
 			estado.fixas = estado.fixas.filter(x => x !== id);
 		} else {
 			if (estado.fixas.length >= LIMITE_FIXAS) {
-				alert(`Você pode fixar no máximo ${LIMITE_FIXAS} cartas.`);
+				aviso(`Você pode fixar no máximo ${LIMITE_FIXAS} cartas.`);
 				return;
 			}
 			const carta = CARTAS_POR_ID[id];
 			if (carta.raridade === "campeao" && estado.fixas.some(f => CARTAS_POR_ID[f].raridade === "campeao")) {
-				alert("Só é permitido 1 campeão por deck.");
+				aviso("Só é permitido 1 campeão por deck.");
 				return;
 			}
 			estado.fixas.push(id);
@@ -165,7 +174,7 @@ function renderResultado(res) {
 				await navigator.clipboard.writeText(textoDoDeck(deck, avaliacao.media));
 				btn.textContent = "Copiado!";
 			} catch {
-				prompt("Copie a lista:", textoDoDeck(deck, avaliacao.media));
+				btn.textContent = "Não foi possível copiar";
 			}
 			setTimeout(() => (btn.textContent = "Copiar lista"), 1500);
 		});
