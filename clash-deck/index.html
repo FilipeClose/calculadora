@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gerador de Decks</title>
+	<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+	<header>
+		<h1>Gerador de Decks <span>Clash Royale</span></h1>
+		<p>Escolha uma ou mais cartas e o gerador monta decks equilibrados em volta delas.</p>
+	</header>
+
+	<main>
+		<section class="painel">
+			<h2>1. Cartas fixas <small>(até 4)</small></h2>
+			<div id="fixas" class="bandeja"></div>
+			<p id="aviso" class="aviso" role="status" hidden></p>
+
+			<div class="controles">
+				<input id="busca" type="search" placeholder="Buscar carta (ex.: Corredor, Hog Rider)…" autocomplete="off">
+				<div class="modo" role="radiogroup" aria-label="Ao clicar numa carta">
+					<button data-modo="fixar" class="ativo">Fixar carta</button>
+					<button data-modo="excluir">Excluir carta</button>
+				</div>
+			</div>
+			<div class="filtros" id="filtros">
+				<button data-tipo="todos" class="ativo">Todas</button>
+				<button data-tipo="W">Ataque</button>
+				<button data-tipo="tropa">Tropas</button>
+				<button data-tipo="feitico">Feitiços</button>
+				<button data-tipo="construcao">Construções</button>
+				<button data-tipo="campeao">Campeões</button>
+			</div>
+			<div id="colecao" class="grade"></div>
+			<p class="dica">Modo <b>Excluir</b>: marque cartas que você não tem ou não quer usar. Elas ficam salvas neste navegador.
+				<button id="limparExcluidas" class="link">Limpar excluídas</button></p>
+		</section>
+
+		<section class="painel">
+			<h2>2. Opções</h2>
+			<div class="opcoes">
+				<label>Estilo de elixir
+					<select id="estilo">
+						<option value="qualquer">Qualquer</option>
+						<option value="ciclo">Ciclo rápido (até 3.2)</option>
+						<option value="equilibrado">Equilibrado (3.3 – 3.9)</option>
+						<option value="pesado">Pesado (4.0+)</option>
+					</select>
+				</label>
+				<label>Quantidade de decks
+					<select id="quantidade">
+						<option>3</option>
+						<option selected>5</option>
+						<option>8</option>
+					</select>
+				</label>
+				<button id="gerar" class="primario">Gerar decks</button>
+			</div>
+		</section>
+
+		<section id="resultado"></section>
+	</main>
+
+	<footer>Projeto de fã, sem vínculo com a Supercell. Nomes das cartas em PT-BR podem variar levemente do jogo.</footer>
+
+	<script src="cartas.js"></script>
+	<script src="gerador.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
